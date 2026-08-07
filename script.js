@@ -31,3 +31,6 @@ const contenido={
 
 document.querySelector(".menu").innerHTML=contenido[opcion];
 }
+function abrir(texto){
+    alert("Próximamente: " + texto);
+}
