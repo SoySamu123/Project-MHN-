@@ -28,9 +28,7 @@ const contenido={
 <p>Próximamente recibirás análisis personalizados.</p>
 `
 };
-
-document.querySelector(".menu").innerHTML=contenido[opcion];
-}
+document.getElementById("contenido").innerHTML=contenido; 
 function abrir(texto){
     alert("Próximamente: " + texto);
 }
