@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project MHN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project MHN</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#001f4d,#0047ab);
+    color:white;
+    text-align:center;
+}
+
+header{
+    padding:40px 20px;
+}
+
+h1{
+    font-size:42px;
+}
+
+p{
+    color:#d9e7ff;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    width:85%;
+    max-width:350px;
+    margin:auto;
+}
+
+button{
+    padding:18px;
+    font-size:18px;
+    border:none;
+    border-radius:15px;
+    background:white;
+    color:#003366;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+footer{
+    margin-top:40px;
+    color:#ccc;
+}
+</style>
 </head>
+
 <body>
-  <h1>⚽ PROJECT MHN ⚽</h1>
-  <p>¡La página funciona correctamente!</p>
+
+<header>
+<h1>⚽ PROJECT MHN ⚽</h1>
+<p>MAKE HEROES NOW</p>
+</header>
+
+<div class="menu">
+
+<button onclick="abrir('👤 Mi Perfil')">👤 Mi Perfil</button>
+
+<button onclick="abrir('🏟️ Mi Club')">🏟️ Mi Club</button>
+
+<button onclick="abrir('📊 Estadísticas')">📊 Estadísticas</button>
+
+<button onclick="abrir('🤖 IA MHN')">🤖 IA MHN</button>
+
+</div>
+
+<footer>
+Versión 0.3
+</footer>
+
+<script>
+function abrir(texto){
+alert("Próximamente: " + texto);
+}
+</script>
+
 </body>
 </html>
