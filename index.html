@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Project MHN</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -43,45 +45,105 @@ button{
     background:white;
     color:#003366;
     font-weight:bold;
+    cursor:pointer;
 }
 
 button:hover{
     transform:scale(1.03);
 }
-<div id="contenido"></div>
+
+#contenido{
+    width:90%;
+    max-width:600px;
+    margin:30px auto;
+}
+
 footer{
     margin-top:40px;
     color:#ccc;
 }
+
+.perfil{
+    background:rgba(255,255,255,0.12);
+    padding:25px;
+    border-radius:20px;
+}
+
+.perfil input,
+.perfil select{
+    display:block;
+    width:90%;
+    margin:10px auto;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+}
+
+.perfil label{
+    display:block;
+    margin-top:15px;
+}
+
+.perfil input[type="range"]{
+    width:90%;
+}
+
+.general{
+    margin:20px;
+    font-size:20px;
+}
+
+.general strong{
+    display:block;
+    font-size:50px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <h1>⚽ PROJECT MHN ⚽</h1>
+
 <p>MAKE HEROES NOW</p>
+
 </header>
+
 
 <div class="menu">
 
-<button onclick="abrir('👤 Mi Perfil')">👤 Mi Perfil</button>
+<button onclick="abrir('👤 Mi Perfil')">
+👤 Mi Perfil
+</button>
 
-<button onclick="abrir('🏟️ Mi Club')">🏟️ Mi Club</button>
+<button onclick="abrir('🏟️ Mi Club')">
+🏟️ Mi Club
+</button>
 
-<button onclick="abrir('📊 Estadísticas')">📊 Estadísticas</button>
+<button onclick="abrir('📊 Estadísticas')">
+📊 Estadísticas
+</button>
 
-<button onclick="abrir('🤖 IA MHN')">🤖 IA MHN</button>
+<button onclick="abrir('🤖 IA MHN')">
+🤖 IA MHN
+</button>
 
 </div>
 
+
+<div id="contenido"></div>
+
+
 <footer>
+
 Versión 0.3
+
 </footer>
 
-<script>
-</script>
 
 <script src="script.js"></script>
+
 </body>
 </html>
