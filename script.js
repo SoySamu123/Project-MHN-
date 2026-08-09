@@ -1,4 +1,6 @@
-alert("🔥 PM 0.4 CARGADO");
+function abrir(opcion) {
+
+    if (opcion === "👤 Mi Perfil") { 
 
 function abrir(opcion) {
 
