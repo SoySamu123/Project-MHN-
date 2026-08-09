@@ -37,8 +37,7 @@ function abrir(opcion) {
 
                 <div class="general">
                     <span>⭐ GENERAL</span>
-                    <strong>79</strong>
-                </div>
+                 <strong id="generalJugador">0</strong>
 
                 <button onclick="guardarPerfil()">
                     💾 GUARDAR PERFIL
