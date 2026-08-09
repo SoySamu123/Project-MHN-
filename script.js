@@ -1,14 +1,32 @@
-// ================================
-// PROJECT MHN - SCRIPT PRINCIPAL
-// ================================
+// ============================================
+// PROJECT MHN — MI PERFIL
+// ============================================
+
+const estadisticas = [
+    ["templanza", "Templanza", "tempValor"],
+    ["estabilidad", "Estabilidad", "estaValor"],
+    ["percepcionOfensiva", "Percepción ofensiva", "poValor"],
+    ["percepcionDefensiva", "Percepción defensiva", "pdValor"],
+    ["trabajoEquipo", "Trabajo en equipo", "teValor"],
+
+    ["resistencia", "Resistencia", "resValor"],
+    ["velocidad", "Velocidad", "velValor"],
+    ["agilidad", "Agilidad", "agiValor"],
+    ["aceleracion", "Aceleración", "aceValor"],
+
+    ["regate", "Regate", "regValor"],
+    ["pase", "Pase", "pasValor"],
+    ["tiro", "Tiro", "tirValor"]
+];
+
+
+// ============================================
+// ABRIR MENÚ
+// ============================================
 
 function abrir(opcion) {
 
     const contenido = document.getElementById("contenido");
-
-    // ================================
-    // MI PERFIL
-    // ================================
 
     if (opcion === "👤 Mi Perfil") {
 
@@ -33,18 +51,14 @@ function abrir(opcion) {
             <h3>⚽ Posición</h3>
 
             <select id="posicionJugador">
-
                 <option>Centrocampista</option>
                 <option>Delantero</option>
                 <option>Extremo derecho</option>
                 <option>Extremo izquierdo</option>
                 <option>Defensa</option>
                 <option>Portero</option>
-
             </select>
 
-
-            <!-- GENERAL -->
 
             <div class="general">
 
@@ -55,184 +69,34 @@ function abrir(opcion) {
             </div>
 
 
-            <!-- MENTALIDAD -->
-
             <h3>🧠 MENTALIDAD</h3>
 
-            <label>
-                Templanza:
-                <span id="tempValor">0</span>
-            </label>
+            ${crearEstadisticas([
+                estadisticas[0],
+                estadisticas[1],
+                estadisticas[2],
+                estadisticas[3],
+                estadisticas[4]
+            ])}
 
-            <input
-                id="templanza"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Estabilidad:
-                <span id="estaValor">0</span>
-            </label>
-
-            <input
-                id="estabilidad"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Percepción ofensiva:
-                <span id="poValor">0</span>
-            </label>
-
-            <input
-                id="percepcionOfensiva"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Percepción defensiva:
-                <span id="pdValor">0</span>
-            </label>
-
-            <input
-                id="percepcionDefensiva"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Trabajo en equipo:
-                <span id="teValor">0</span>
-            </label>
-
-            <input
-                id="trabajoEquipo"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <!-- FÍSICO -->
 
             <h3>💪 FÍSICO</h3>
 
-            <label>
-                Resistencia:
-                <span id="resValor">0</span>
-            </label>
+            ${crearEstadisticas([
+                estadisticas[5],
+                estadisticas[6],
+                estadisticas[7],
+                estadisticas[8]
+            ])}
 
-            <input
-                id="resistencia"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Velocidad:
-                <span id="velValor">0</span>
-            </label>
-
-            <input
-                id="velocidad"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Agilidad:
-                <span id="agiValor">0</span>
-            </label>
-
-            <input
-                id="agilidad"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Aceleración:
-                <span id="aceValor">0</span>
-            </label>
-
-            <input
-                id="aceleracion"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <!-- TÉCNICA -->
 
             <h3>🎯 TÉCNICA</h3>
 
-            <label>
-                Regate:
-                <span id="regValor">0</span>
-            </label>
-
-            <input
-                id="regate"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Pase:
-                <span id="pasValor">0</span>
-            </label>
-
-            <input
-                id="pase"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-
-            <label>
-                Tiro:
-                <span id="tirValor">0</span>
-            </label>
-
-            <input
-                id="tiro"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
+            ${crearEstadisticas([
+                estadisticas[9],
+                estadisticas[10],
+                estadisticas[11]
+            ])}
 
 
             <br>
@@ -242,18 +106,14 @@ function abrir(opcion) {
             </button>
 
         </div>
-
         `;
 
+        cargarPerfil();
         activarEstadisticas();
 
         return;
     }
 
-
-    // ================================
-    // MI CLUB
-    // ================================
 
     if (opcion === "🏟️ Mi Club") {
 
@@ -266,10 +126,6 @@ function abrir(opcion) {
     }
 
 
-    // ================================
-    // ESTADÍSTICAS
-    // ================================
-
     if (opcion === "📊 Estadísticas") {
 
         contenido.innerHTML = `
@@ -280,10 +136,6 @@ function abrir(opcion) {
         return;
     }
 
-
-    // ================================
-    // IA MHN
-    // ================================
 
     if (opcion === "🤖 IA MHN") {
 
@@ -297,41 +149,88 @@ function abrir(opcion) {
 }
 
 
-// ====================================
+// ============================================
+// CREAR ESTADÍSTICA
+// ============================================
+
+function crearEstadistica(stat) {
+
+    const id = stat[0];
+    const nombre = stat[1];
+    const valorId = stat[2];
+
+    return `
+
+        <div class="estadistica">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-top:15px;
+            ">
+
+                <span>${nombre}</span>
+
+                <strong id="${valorId}">0</strong>
+
+            </div>
+
+
+            <input
+                id="${id}"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                style="width:100%;"
+            >
+
+
+            <div style="
+                width:100%;
+                height:8px;
+                background:rgba(255,255,255,0.25);
+                border-radius:10px;
+                overflow:hidden;
+            ">
+
+                <div
+                    id="${id}Barra"
+                    style="
+                        width:0%;
+                        height:100%;
+                        background:white;
+                        border-radius:10px;
+                        transition:width 0.2s;
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+// ============================================
 // ACTIVAR ESTADÍSTICAS
-// ====================================
+// ============================================
 
 function activarEstadisticas() {
 
-    const estadisticas = [
+    estadisticas.forEach(function(stat) {
 
-        ["templanza", "tempValor"],
-        ["estabilidad", "estaValor"],
-        ["percepcionOfensiva", "poValor"],
-        ["percepcionDefensiva", "pdValor"],
-        ["trabajoEquipo", "teValor"],
-
-        ["resistencia", "resValor"],
-        ["velocidad", "velValor"],
-        ["agilidad", "agiValor"],
-        ["aceleracion", "aceValor"],
-
-        ["regate", "regValor"],
-        ["pase", "pasValor"],
-        ["tiro", "tirValor"]
-
-    ];
-
-
-    estadisticas.forEach(function(item) {
-
-        const slider = document.getElementById(item[0]);
-        const numero = document.getElementById(item[1]);
+        const slider = document.getElementById(stat[0]);
+        const numero = document.getElementById(stat[2]);
+        const barra = document.getElementById(stat[0] + "Barra");
 
 
         slider.addEventListener("input", function() {
 
             numero.textContent = slider.value;
+
+            barra.style.width = slider.value + "%";
 
             calcularGeneral();
 
@@ -342,57 +241,36 @@ function activarEstadisticas() {
 }
 
 
-// ====================================
+// ============================================
 // CALCULAR GENERAL
-// ====================================
+// ============================================
 
 function calcularGeneral() {
 
-    const estadisticas = [
-
-        "templanza",
-        "estabilidad",
-        "percepcionOfensiva",
-        "percepcionDefensiva",
-        "trabajoEquipo",
-
-        "resistencia",
-        "velocidad",
-        "agilidad",
-        "aceleracion",
-
-        "regate",
-        "pase",
-        "tiro"
-
-    ];
-
-
     let total = 0;
 
+    estadisticas.forEach(function(stat) {
 
-    estadisticas.forEach(function(id) {
-
-        const elemento = document.getElementById(id);
+        const elemento = document.getElementById(stat[0]);
 
         total += Number(elemento.value);
 
     });
 
 
-    const general =
-        Math.round(total / estadisticas.length);
+    const general = Math.round(
+        total / estadisticas.length
+    );
 
 
     document.getElementById("generalJugador").textContent =
         general;
-
 }
 
 
-// ====================================
+// ============================================
 // GUARDAR PERFIL
-// ====================================
+// ============================================
 
 function guardarPerfil() {
 
@@ -403,31 +281,94 @@ function guardarPerfil() {
         document.getElementById("posicionJugador").value;
 
 
-    if (nombre.trim() === "") {
+    const datos = {
 
-        alert("⚠️ Escribe tu nombre primero.");
+        nombre: nombre,
+
+        posicion: posicion,
+
+        estadisticas: {}
+
+    };
+
+
+    estadisticas.forEach(function(stat) {
+
+        datos.estadisticas[stat[0]] =
+            document.getElementById(stat[0]).value;
+
+    });
+
+
+    localStorage.setItem(
+        "projectMHNPerfil",
+        JSON.stringify(datos)
+    );
+
+
+    alert("✅ ¡PERFIL GUARDADO!");
+
+}
+
+
+// ============================================
+// CARGAR PERFIL
+// ============================================
+
+function cargarPerfil() {
+
+    const datosGuardados =
+        localStorage.getItem("projectMHNPerfil");
+
+
+    if (!datosGuardados) {
+
+        calcularGeneral();
 
         return;
 
     }
 
 
-    localStorage.setItem(
-        "mhnNombre",
-        nombre
-    );
+    const datos =
+        JSON.parse(datosGuardados);
 
 
-    localStorage.setItem(
-        "mhnPosicion",
-        posicion
-    );
+    document.getElementById("nombreJugador").value =
+        datos.nombre || "";
 
 
-    alert(
-        "✅ ¡PERFIL GUARDADO!\n\n" +
-        "Jugador: " + nombre +
-        "\nPosición: " + posicion
-    );
+    document.getElementById("posicionJugador").value =
+        datos.posicion || "Centrocampista";
+
+
+    estadisticas.forEach(function(stat) {
+
+        const id = stat[0];
+
+        const valor =
+            datos.estadisticas[id] || 0;
+
+
+        const slider =
+            document.getElementById(id);
+
+        const numero =
+            document.getElementById(stat[2]);
+
+        const barra =
+            document.getElementById(id + "Barra");
+
+
+        slider.value = valor;
+
+        numero.textContent = valor;
+
+        barra.style.width = valor + "%";
+
+    });
+
+
+    calcularGeneral();
 
 }
