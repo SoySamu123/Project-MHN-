@@ -2,6 +2,11 @@
 // PROJECT MHN
 // ==========================================
 
+
+// ==========================================
+// ESTADÍSTICAS DEL JUGADOR
+// ==========================================
+
 const estadisticas = [
     "velocidad",
     "pase",
@@ -14,13 +19,14 @@ const estadisticas = [
 
 
 // ==========================================
-// ABRIR
+// ABRIR SECCIONES
 // ==========================================
 
 function abrir(opcion) {
 
     const contenido =
         document.getElementById("contenido");
+
 
     // ======================================
     // MI PERFIL
@@ -57,6 +63,7 @@ function abrir(opcion) {
 
                 </select>
 
+
                 <div class="general">
 
                     ⭐ GENERAL
@@ -71,105 +78,43 @@ function abrir(opcion) {
                 <h3>📊 ESTADÍSTICAS</h3>
 
 
-                <label>
-                    Velocidad:
-                    <span id="velocidadValor">0</span>
-                </label>
+                ${crearEstadistica(
+                    "velocidad",
+                    "Velocidad"
+                )}
 
-                <input
-                    id="velocidad"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
+                ${crearEstadistica(
+                    "pase",
+                    "Pase"
+                )}
 
+                ${crearEstadistica(
+                    "regate",
+                    "Regate"
+                )}
 
-                <label>
-                    Pase:
-                    <span id="paseValor">0</span>
-                </label>
+                ${crearEstadistica(
+                    "tiro",
+                    "Tiro"
+                )}
 
-                <input
-                    id="pase"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
+                ${crearEstadistica(
+                    "resistencia",
+                    "Resistencia"
+                )}
 
+                ${crearEstadistica(
+                    "agilidad",
+                    "Agilidad"
+                )}
 
-                <label>
-                    Regate:
-                    <span id="regateValor">0</span>
-                </label>
-
-                <input
-                    id="regate"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
+                ${crearEstadistica(
+                    "control",
+                    "Control"
+                )}
 
 
-                <label>
-                    Tiro:
-                    <span id="tiroValor">0</span>
-                </label>
-
-                <input
-                    id="tiro"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
-
-
-                <label>
-                    Resistencia:
-                    <span id="resistenciaValor">0</span>
-                </label>
-
-                <input
-                    id="resistencia"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
-
-
-                <label>
-                    Agilidad:
-                    <span id="agilidadValor">0</span>
-                </label>
-
-                <input
-                    id="agilidad"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
-
-
-                <label>
-                    Control:
-                    <span id="controlValor">0</span>
-                </label>
-
-                <input
-                    id="control"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
-
-
-                <br><br>
+                <br>
 
                 <button onclick="guardarPerfil()">
                     💾 GUARDAR PERFIL
@@ -179,7 +124,9 @@ function abrir(opcion) {
 
         `;
 
+
         cargarPerfil();
+
         activarEstadisticas();
 
         return;
@@ -202,6 +149,7 @@ function abrir(opcion) {
                     🛡️
                 </div>
 
+
                 <h3>🏷️ Nombre del club</h3>
 
                 <input
@@ -209,6 +157,7 @@ function abrir(opcion) {
                     type="text"
                     placeholder="Escribe el nombre de tu club"
                 >
+
 
                 <h3>🌎 País</h3>
 
@@ -218,6 +167,7 @@ function abrir(opcion) {
                     placeholder="Escribe el país"
                 >
 
+
                 <h3>🎨 Color principal</h3>
 
                 <input
@@ -225,6 +175,7 @@ function abrir(opcion) {
                     type="text"
                     placeholder="Ejemplo: Azul"
                 >
+
 
                 <div class="general">
 
@@ -234,6 +185,7 @@ function abrir(opcion) {
 
                 </div>
 
+
                 <div class="general">
 
                     💰 PRESUPUESTO
@@ -242,15 +194,43 @@ function abrir(opcion) {
 
                 </div>
 
+
                 <button onclick="guardarClub()">
                     💾 GUARDAR CLUB
                 </button>
+
+
+                <hr style="
+                    margin:30px 0;
+                    opacity:0.3;
+                ">
+
+
+                <h2>👥 PLANTILLA</h2>
+
+
+                <button onclick="mostrarCrearJugador()">
+                    ➕ AÑADIR JUGADOR
+                </button>
+
+
+                <div id="plantilla">
+
+                </div>
+
+
+                <div id="crearJugador">
+
+                </div>
 
             </div>
 
         `;
 
+
         cargarClub();
+
+        mostrarPlantilla();
 
         return;
     }
@@ -261,8 +241,51 @@ function abrir(opcion) {
     // ======================================
 
     contenido.innerHTML = `
+
         <h2>${opcion}</h2>
+
         <p>🚧 Próximamente...</p>
+
+    `;
+
+}
+
+
+// ==========================================
+// CREAR ESTADÍSTICA
+// ==========================================
+
+function crearEstadistica(id, nombre) {
+
+    return `
+
+        <div style="
+            margin:18px 0;
+            text-align:left;
+        ">
+
+            <label>
+
+                ${nombre}:
+
+                <span id="${id}Valor">
+                    0
+                </span>
+
+            </label>
+
+
+            <input
+                id="${id}"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                style="width:100%;"
+            >
+
+        </div>
+
     `;
 }
 
@@ -279,17 +302,27 @@ function activarEstadisticas() {
             document.getElementById(id);
 
         const valor =
-            document.getElementById(id + "Valor");
+            document.getElementById(
+                id + "Valor"
+            );
 
-        if (!slider || !valor) return;
 
-        slider.addEventListener("input", function() {
+        if (!slider || !valor) {
+            return;
+        }
 
-            valor.textContent = this.value;
 
-            calcularGeneral();
+        slider.addEventListener(
+            "input",
+            function() {
 
-        });
+                valor.textContent =
+                    this.value;
+
+                calcularGeneral();
+
+            }
+        );
 
     });
 
@@ -306,30 +339,47 @@ function calcularGeneral() {
 
     let cantidad = 0;
 
+
     estadisticas.forEach(function(id) {
 
         const slider =
             document.getElementById(id);
 
-        if (!slider) return;
 
-        total += Number(slider.value);
+        if (!slider) {
+            return;
+        }
+
+
+        total +=
+            Number(slider.value);
 
         cantidad++;
 
     });
 
-    if (cantidad === 0) return;
+
+    if (cantidad === 0) {
+        return;
+    }
+
 
     const general =
-        Math.round(total / cantidad);
+        Math.round(
+            total / cantidad
+        );
+
 
     const elemento =
-        document.getElementById("generalJugador");
+        document.getElementById(
+            "generalJugador"
+        );
+
 
     if (elemento) {
 
-        elemento.textContent = general;
+        elemento.textContent =
+            general;
 
     }
 
@@ -364,6 +414,7 @@ function guardarPerfil() {
         const slider =
             document.getElementById(id);
 
+
         if (slider) {
 
             datos.estadisticas[id] =
@@ -396,6 +447,7 @@ function cargarPerfil() {
             "projectMHNPerfil"
         );
 
+
     if (!guardado) {
 
         calcularGeneral();
@@ -413,6 +465,7 @@ function cargarPerfil() {
         document.getElementById(
             "nombreJugador"
         );
+
 
     const posicion =
         document.getElementById(
@@ -442,13 +495,16 @@ function cargarPerfil() {
         const slider =
             document.getElementById(id);
 
+
         const valor =
             document.getElementById(
                 id + "Valor"
             );
 
 
-        if (!slider) return;
+        if (!slider) {
+            return;
+        }
 
 
         const numero =
@@ -458,7 +514,8 @@ function cargarPerfil() {
                 : 0;
 
 
-        slider.value = numero;
+        slider.value =
+            numero;
 
 
         if (valor) {
@@ -482,27 +539,22 @@ function cargarPerfil() {
 
 function guardarClub() {
 
-    const nombre =
-        document.getElementById(
-            "nombreClub"
-        ).value;
-
-    const pais =
-        document.getElementById(
-            "paisClub"
-        ).value;
-
-    const color =
-        document.getElementById(
-            "colorClub"
-        ).value;
-
-
     const club = {
 
-        nombre: nombre,
-        pais: pais,
-        color: color
+        nombre:
+            document.getElementById(
+                "nombreClub"
+            ).value,
+
+        pais:
+            document.getElementById(
+                "paisClub"
+            ).value,
+
+        color:
+            document.getElementById(
+                "colorClub"
+            ).value
 
     };
 
@@ -530,50 +582,9 @@ function cargarClub() {
         );
 
 
-    if (!guardado) return;
-
-
-    const club =
-        JSON.parse(guardado);
-
-
-    const nombre =
-        document.getElementById(
-            "nombreClub"
-        );
-
-    const pais =
-        document.getElementById(
-            "paisClub"
-        );
-
-    const color =
-        document.getElementById(
-            "colorClub"
-        );
-
-
-    if (nombre) {
-
-        nombre.value =
-            club.nombre || "";
-
+    if (!guardado) {
+        return;
     }
 
 
-    if (pais) {
-
-        pais.value =
-            club.pais || "";
-
-    }
-
-
-    if (color) {
-
-        color.value =
-            club.color || "";
-
-    }
-
-}
+    const club
