@@ -312,6 +312,73 @@ function cargarPerfil() {
 
         return;
 
+    }    // ==========================================
+    // MI CLUB
+    // ==========================================
+
+    if (opcion === "🏟️ Mi Club") {
+
+        contenido.innerHTML = `
+
+            <div class="perfil">
+
+                <h2>🏟️ MI CLUB</h2>
+
+                <div class="avatar">
+                    🛡️
+                </div>
+
+                <h3>🏷️ Nombre del club</h3>
+
+                <input
+                    id="nombreClub"
+                    type="text"
+                    placeholder="Escribe el nombre de tu club"
+                >
+
+                <h3>🌎 País</h3>
+
+                <input
+                    id="paisClub"
+                    type="text"
+                    placeholder="Escribe el país"
+                >
+
+                <h3>🎨 Color principal</h3>
+
+                <input
+                    id="colorClub"
+                    type="text"
+                    placeholder="Ejemplo: Azul"
+                >
+
+                <div class="general">
+
+                    ⭐ NIVEL DEL CLUB
+
+                    <strong>1</strong>
+
+                </div>
+
+                <div class="general">
+
+                    💰 PRESUPUESTO
+
+                    <strong>1000</strong>
+
+                </div>
+
+                <button onclick="guardarClub()">
+                    💾 GUARDAR CLUB
+                </button>
+
+            </div>
+
+        `;
+
+        cargarClub();
+
+        return;
     }
 
 
