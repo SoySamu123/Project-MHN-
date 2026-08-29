@@ -1,150 +1,98 @@
-function guardarPerfil() {
+// ==========================================
+// PROJECT MHN - SCRIPT.JS
+// ==========================================
 
-    try {
+const estadisticas = [
+    "templanza",
+    "agresividad",
+    "estabilidad",
+    "percepcionOfensiva",
+    "percepcionDefensiva",
+    "trabajoEquipo",
+    "comprensionTactica",
 
-        const datos = {
-            nombre: document.getElementById("nombreJugador").value,
-            posicion: document.getElementById("posicionJugador").value,
-            estadisticas: {}
-        };
+    "resistencia",
+    "velocidadMaxima",
+    "agilidad",
+    "aceleracion",
+    "salto",
+    "agudezaVisual",
+    "equilibrio",
 
-        estadisticas.forEach(function(id) {
-
-            const elemento = document.getElementById(id);
-
-            if (elemento) {
-                datos.estadisticas[id] = elemento.value;
-            }
-
-        });
-
-        localStorage.setItem(
-            "projectMHNPerfil",
-            JSON.stringify(datos)
-        );
-
-        alert("💾 ¡PERFIL GUARDADO!");
-
-    } catch (error) {
-
-        console.error("Error guardando perfil:", error);
-
-        alert("⚠️ No se pudo guardar el perfil.");
-
-    }
-}
+    "regate",
+    "pase",
+    "tiro",
+    "controlBalon",
+    "entrada",
+    "barrida",
+    "juegoDirecto",
+    "posicionamiento",
+    "campoVision",
+    "finta",
+    "cabeceo"
+];
 
 
-function cargarPerfil() {
+// ==========================================
+// ABRIR SECCIONES
+// ==========================================
 
-    try {
+function abrir(opcion) {
 
-        const guardado =
-            localStorage.getItem("projectMHNPerfil");
+    const contenido = document.getElementById("contenido");
 
-        if (!guardado) {
-            calcularGeneral();
-            return;
-        }
+    if (!contenido) return;
 
-        const datos = JSON.parse(guardado);
 
-        const nombre =
-            document.getElementById("nombreJugador");
+    // ======================================
+    // MI PERFIL
+    // ======================================
 
-        const posicion =
-            document.getElementById("posicionJugador");
+    if (opcion === "👤 Mi Perfil") {
 
-        if (nombre) {
-            nombre.value = datos.nombre || "";
-        }
+        contenido.innerHTML = `
 
-        if (posicion) {
-            posicion.value =
-                datos.posicion || "Centrocampista";
-        }
+        <div class="perfil">
 
-        const guardadas =
-            datos.estadisticas || {};
+            <h2>👤 MI PERFIL</h2>
 
-        estadisticas.forEach(function(id) {
+            <div class="avatar">
+                ⚽
+            </div>
 
-            const slider =
-                document.getElementById(id);
+            <h3>Nombre del jugador</h3>
 
-            if (!slider) return;
+            <input
+                id="nombreJugador"
+                type="text"
+                placeholder="Escribe tu nombre"
+            >
 
-            const valor =
-                Number(guardadas[id]) || 0;
+            <h3>⚽ Posición</h3>
 
-            slider.value = valor;
+            <select id="posicionJugador">
 
-            const numero =
-                document.getElementById(id + "Valor");
+                <option>Centrocampista</option>
+                <option>Delantero</option>
+                <option>Extremo derecho</option>
+                <option>Extremo izquierdo</option>
+                <option>Defensa</option>
+                <option>Portero</option>
 
-            const barra =
-                document.getElementById(id + "Barra");
+            </select>
 
-            if (numero) {
-                numero.textContent = valor;
-            }
 
-            if (barra) {
-                barra.style.width = valor + "%";
-            }
+            <div class="general">
 
-        });
+                <span>⭐ GENERAL</span>
 
-        calcularGeneral();
+                <strong id="generalJugador">
+                    0
+                </strong>
 
-    } catch (error) {
+            </div>
 
-        console.error("Error cargando perfil:", error);
 
-        // Si existe un dato guardado corrupto,
-        // PM no se rompe completo.
-        localStorage.removeItem("projectMHNPerfil");
+            ${crearCategoria("🧠 MENTALIDAD", [
 
-        calcularGeneral();
-
-    }
-} {
-
-    const guardado =
-        localStorage.getItem("projectMHNPerfil");
-
-    if (!guardado) {
-        calcularGeneral();
-        return;
-    }
-
-    const datos = JSON.parse(guardado);
-
-    // Nombre
-    document.getElementById("nombreJugador").value =
-        datos.nombre || "";
-
-    // Posición
-    document.getElementById("posicionJugador").value =
-        datos.posicion || "Centrocampista";
-
-    // Estadísticas
-    estadisticas.forEach(function(id) {
-
-        const valor =
-            datos.estadisticas[id] || 0;
-
-        const slider =
-            document.getElementById(id);
-
-        slider.value = valor;
-
-        document.getElementById(id + "Valor")
-            .textContent = valor;
-
-        document.getElementById(id + "Barra")
-            .style.width = valor + "%";
-    });
-
-    calcularGeneral();
-}
+               
