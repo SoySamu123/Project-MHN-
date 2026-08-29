@@ -41,8 +41,14 @@ function abrir(opcion) {
 
                 </div>
 
+                <button onclick="guardarPerfil()">
+                    💾 GUARDAR PERFIL
+                </button>
+
             </div>
         `;
+
+        cargarPerfil();
 
     } else {
 
@@ -50,6 +56,52 @@ function abrir(opcion) {
             <h2>${opcion}</h2>
             <p>🚧 Próximamente...</p>
         `;
+
+    }
+}
+
+
+function guardarPerfil() {
+
+    const nombre =
+        document.getElementById("nombreJugador").value;
+
+    const posicion =
+        document.getElementById("posicionJugador").value;
+
+    localStorage.setItem(
+        "mhnNombre",
+        nombre
+    );
+
+    localStorage.setItem(
+        "mhnPosicion",
+        posicion
+    );
+
+    alert("💾 ¡PERFIL GUARDADO!");
+}
+
+
+function cargarPerfil() {
+
+    const nombreGuardado =
+        localStorage.getItem("mhnNombre");
+
+    const posicionGuardada =
+        localStorage.getItem("mhnPosicion");
+
+    if (nombreGuardado !== null) {
+
+        document.getElementById("nombreJugador").value =
+            nombreGuardado;
+
+    }
+
+    if (posicionGuardada !== null) {
+
+        document.getElementById("posicionJugador").value =
+            posicionGuardada;
 
     }
 }
