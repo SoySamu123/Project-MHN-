@@ -1,11 +1,30 @@
 // ==========================================
-// PROJECT MHN - MI PERFIL
+// PROJECT MHN
+// ==========================================
+
+const estadisticas = [
+    "velocidad",
+    "pase",
+    "regate",
+    "tiro",
+    "resistencia",
+    "agilidad",
+    "control"
+];
+
+
+// ==========================================
+// ABRIR
 // ==========================================
 
 function abrir(opcion) {
 
     const contenido =
         document.getElementById("contenido");
+
+    // ======================================
+    // MI PERFIL
+    // ======================================
 
     if (opcion === "👤 Mi Perfil") {
 
@@ -38,12 +57,13 @@ function abrir(opcion) {
 
                 </select>
 
-
                 <div class="general">
 
                     ⭐ GENERAL
 
-                    <strong id="generalJugador">0</strong>
+                    <strong id="generalJugador">
+                        0
+                    </strong>
 
                 </div>
 
@@ -151,170 +171,24 @@ function abrir(opcion) {
 
                 <br><br>
 
-
                 <button onclick="guardarPerfil()">
                     💾 GUARDAR PERFIL
                 </button>
 
             </div>
+
         `;
 
         cargarPerfil();
-
         activarEstadisticas();
 
         return;
     }
 
 
-    contenido.innerHTML = `
-        <h2>${opcion}</h2>
-        <p>🚧 Próximamente...</p>
-    `;
-}
-
-
-// ==========================================
-// ESTADÍSTICAS
-// ==========================================
-
-const estadisticas = [
-
-    "velocidad",
-    "pase",
-    "regate",
-    "tiro",
-    "resistencia",
-    "agilidad",
-    "control"
-
-];
-
-
-// ==========================================
-// ACTIVAR ESTADÍSTICAS
-// ==========================================
-
-function activarEstadisticas() {
-
-    estadisticas.forEach(function(id) {
-
-        const slider =
-            document.getElementById(id);
-
-        const valor =
-            document.getElementById(id + "Valor");
-
-
-        slider.addEventListener("input", function() {
-
-            valor.textContent =
-                this.value;
-
-            calcularGeneral();
-
-        });
-
-    });
-
-}
-
-
-// ==========================================
-// CALCULAR GENERAL
-// ==========================================
-
-function calcularGeneral() {
-
-    let total = 0;
-
-
-    estadisticas.forEach(function(id) {
-
-        const slider =
-            document.getElementById(id);
-
-        total += Number(slider.value);
-
-    });
-
-
-    const general =
-        Math.round(
-            total / estadisticas.length
-        );
-
-
-    document.getElementById(
-        "generalJugador"
-    ).textContent = general;
-
-}
-
-
-// ==========================================
-// GUARDAR PERFIL
-// ==========================================
-
-function guardarPerfil() {
-
-    const datos = {
-
-        nombre:
-            document.getElementById(
-                "nombreJugador"
-            ).value,
-
-        posicion:
-            document.getElementById(
-                "posicionJugador"
-            ).value,
-
-        estadisticas: {}
-
-    };
-
-
-    estadisticas.forEach(function(id) {
-
-        datos.estadisticas[id] =
-            document.getElementById(id).value;
-
-    });
-
-
-    localStorage.setItem(
-        "projectMHNPerfil",
-        JSON.stringify(datos)
-    );
-
-
-    alert("💾 ¡PERFIL GUARDADO!");
-
-}
-
-
-// ==========================================
-// CARGAR PERFIL
-// ==========================================
-
-function cargarPerfil() {
-
-    const guardado =
-        localStorage.getItem(
-            "projectMHNPerfil"
-        );
-
-
-    if (!guardado) {
-
-        calcularGeneral();
-
-        return;
-
-    }    // ==========================================
+    // ======================================
     // MI CLUB
-    // ==========================================
+    // ======================================
 
     if (opcion === "🏟️ Mi Club") {
 
@@ -382,44 +256,324 @@ function cargarPerfil() {
     }
 
 
-    const datos =
-        JSON.parse(guardado);
+    // ======================================
+    // OTRAS SECCIONES
+    // ======================================
+
+    contenido.innerHTML = `
+        <h2>${opcion}</h2>
+        <p>🚧 Próximamente...</p>
+    `;
+}
 
 
-    document.getElementById(
-        "nombreJugador"
-    ).value =
-        datos.nombre || "";
+// ==========================================
+// ACTIVAR ESTADÍSTICAS
+// ==========================================
+
+function activarEstadisticas() {
+
+    estadisticas.forEach(function(id) {
+
+        const slider =
+            document.getElementById(id);
+
+        const valor =
+            document.getElementById(id + "Valor");
+
+        if (!slider || !valor) return;
+
+        slider.addEventListener("input", function() {
+
+            valor.textContent = this.value;
+
+            calcularGeneral();
+
+        });
+
+    });
+
+}
 
 
-    document.getElementById(
-        "posicionJugador"
-    ).value =
-        datos.posicion ||
-        "Centrocampista";
+// ==========================================
+// GENERAL
+// ==========================================
+
+function calcularGeneral() {
+
+    let total = 0;
+
+    let cantidad = 0;
+
+    estadisticas.forEach(function(id) {
+
+        const slider =
+            document.getElementById(id);
+
+        if (!slider) return;
+
+        total += Number(slider.value);
+
+        cantidad++;
+
+    });
+
+    if (cantidad === 0) return;
+
+    const general =
+        Math.round(total / cantidad);
+
+    const elemento =
+        document.getElementById("generalJugador");
+
+    if (elemento) {
+
+        elemento.textContent = general;
+
+    }
+
+}
+
+
+// ==========================================
+// GUARDAR PERFIL
+// ==========================================
+
+function guardarPerfil() {
+
+    const datos = {
+
+        nombre:
+            document.getElementById(
+                "nombreJugador"
+            ).value,
+
+        posicion:
+            document.getElementById(
+                "posicionJugador"
+            ).value,
+
+        estadisticas: {}
+
+    };
 
 
     estadisticas.forEach(function(id) {
 
-        const valor =
-            datos.estadisticas &&
-            datos.estadisticas[id]
-            ? datos.estadisticas[id]
-            : 0;
+        const slider =
+            document.getElementById(id);
+
+        if (slider) {
+
+            datos.estadisticas[id] =
+                slider.value;
+
+        }
+
+    });
 
 
-        document.getElementById(id).value =
-            valor;
+    localStorage.setItem(
+        "projectMHNPerfil",
+        JSON.stringify(datos)
+    );
 
 
+    alert("💾 ¡PERFIL GUARDADO!");
+
+}
+
+
+// ==========================================
+// CARGAR PERFIL
+// ==========================================
+
+function cargarPerfil() {
+
+    const guardado =
+        localStorage.getItem(
+            "projectMHNPerfil"
+        );
+
+    if (!guardado) {
+
+        calcularGeneral();
+
+        return;
+
+    }
+
+
+    const datos =
+        JSON.parse(guardado);
+
+
+    const nombre =
         document.getElementById(
-            id + "Valor"
-        ).textContent =
-            valor;
+            "nombreJugador"
+        );
+
+    const posicion =
+        document.getElementById(
+            "posicionJugador"
+        );
+
+
+    if (nombre) {
+
+        nombre.value =
+            datos.nombre || "";
+
+    }
+
+
+    if (posicion) {
+
+        posicion.value =
+            datos.posicion ||
+            "Centrocampista";
+
+    }
+
+
+    estadisticas.forEach(function(id) {
+
+        const slider =
+            document.getElementById(id);
+
+        const valor =
+            document.getElementById(
+                id + "Valor"
+            );
+
+
+        if (!slider) return;
+
+
+        const numero =
+            datos.estadisticas &&
+            datos.estadisticas[id] !== undefined
+                ? datos.estadisticas[id]
+                : 0;
+
+
+        slider.value = numero;
+
+
+        if (valor) {
+
+            valor.textContent =
+                numero;
+
+        }
 
     });
 
 
     calcularGeneral();
+
+}
+
+
+// ==========================================
+// GUARDAR CLUB
+// ==========================================
+
+function guardarClub() {
+
+    const nombre =
+        document.getElementById(
+            "nombreClub"
+        ).value;
+
+    const pais =
+        document.getElementById(
+            "paisClub"
+        ).value;
+
+    const color =
+        document.getElementById(
+            "colorClub"
+        ).value;
+
+
+    const club = {
+
+        nombre: nombre,
+        pais: pais,
+        color: color
+
+    };
+
+
+    localStorage.setItem(
+        "projectMHNClub",
+        JSON.stringify(club)
+    );
+
+
+    alert("💾 ¡CLUB GUARDADO!");
+
+}
+
+
+// ==========================================
+// CARGAR CLUB
+// ==========================================
+
+function cargarClub() {
+
+    const guardado =
+        localStorage.getItem(
+            "projectMHNClub"
+        );
+
+
+    if (!guardado) return;
+
+
+    const club =
+        JSON.parse(guardado);
+
+
+    const nombre =
+        document.getElementById(
+            "nombreClub"
+        );
+
+    const pais =
+        document.getElementById(
+            "paisClub"
+        );
+
+    const color =
+        document.getElementById(
+            "colorClub"
+        );
+
+
+    if (nombre) {
+
+        nombre.value =
+            club.nombre || "";
+
+    }
+
+
+    if (pais) {
+
+        pais.value =
+            club.pais || "";
+
+    }
+
+
+    if (color) {
+
+        color.value =
+            club.color || "";
+
+    }
 
 }
