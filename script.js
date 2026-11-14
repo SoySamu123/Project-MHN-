@@ -406,4 +406,115 @@ function guardarClub() {
 
 function cargarClub() {
 
+    const guardado = localStorage.getItem("projectMHNClub");
+
+    if (!guardado) return;
+
+    try {
+        const club = JSON.parse(guardado);
+
+        document.getElementById("nombreClub").value = club.nombre || "";
+        document.getElementById("paisClub").value = club.pais || "";
+        document.getElementById("colorClub").value = club.color || "";
+
+    } catch (error) {
+        console.error("Error cargando club:", error);
+    }
+}
+
+
+// ==========================================
+// PLANTILLA
+// ==========================================
+
+function mostrarFormularioJugador() {
+    document.getElementById("formularioJugador").innerHTML = `
+        <h3>⚽ NUEVO JUGADOR</h3>
+
+        <input id="nuevoNombre" placeholder="Nombre del jugador">
+
+        <select id="nuevaPosicion">
+            <option>Centrocampista</option>
+            <option>Delantero</option>
+            <option>Extremo derecho</option>
+            <option>Extremo izquierdo</option>
+            <option>Defensa</option>
+            <option>Portero</option>
+        </select>
+
+        <button onclick="guardarJugador()">
+            💾 GUARDAR JUGADOR
+        </button>
+    `;
+}
+
+
+function guardarJugador() {
+    const nombre = document.getElementById("nuevoNombre").value.trim();
+    const posicion = document.getElementById("nuevaPosicion").value;
+
+    if (!nombre) {
+        alert("Escribe el nombre del jugador.");
+        return;
+    }
+
+    let plantilla = JSON.parse(
+        localStorage.getItem("projectMHNPlantilla") || "[]"
+    );
+
+    plantilla.push({ nombre, posicion });
+
+    localStorage.setItem(
+        "projectMHNPlantilla",
+        JSON.stringify(plantilla)
+    );
+
+    document.getElementById("formularioJugador").innerHTML = "";
+    mostrarPlantilla();
+
+    alert("¡JUGADOR AÑADIDO!");
+}
+
+
+function mostrarPlantilla() {
+    const contenedor = document.getElementById("plantilla");
+
+    if (!contenedor) return;
+
+    const plantilla = JSON.parse(
+        localStorage.getItem("projectMHNPlantilla") || "[]"
+    );
+
+    if (plantilla.length === 0) {
+        contenedor.innerHTML = "<p>Tu plantilla está vacía.</p>";
+        return;
+    }
+
+    contenedor.innerHTML = plantilla.map((jugador, indice) => `
+        <div class="general">
+            ⚽ ${jugador.nombre}
+            <p>${jugador.posicion}</p>
+            <button onclick="eliminarJugador(${indice})">
+                🗑️ ELIMINAR
+            </button>
+        </div>
+    `).join("");
+}
+
+
+function eliminarJugador(indice) {
+    let plantilla = JSON.parse(
+        localStorage.getItem("projectMHNPlantilla") || "[]"
+    );
+
+    plantilla.splice(indice, 1);
+
+    localStorage.setItem(
+        "projectMHNPlantilla",
+        JSON.stringify(plantilla)
+    );
+
+    mostrarPlantilla();
+}
+
    
