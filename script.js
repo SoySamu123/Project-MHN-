@@ -120,16 +120,41 @@ function abrir(opcion) {
                     type="text"
                     placeholder="Color"
                 >
+<div class="general">
+    ⭐ NIVEL DEL CLUB
+    <strong id="nivelClub">1</strong>
+</div>
 
-                <div class="general">
-                    ⭐ NIVEL
-                    <strong>1</strong>
-                </div>
+<div class="general">
+    💰 PRESUPUESTO
+    <strong id="presupuestoClub">1.000</strong>
+</div>
 
-                <div class="general">
-                    💰 PRESUPUESTO
-                    <strong>1000</strong>
-                </div>
+<hr>
+
+<h3>⚽ RESULTADO DEL PARTIDO</h3>
+
+<button onclick="registrarPartido('victoria')">
+    🏆 VICTORIA (+500)
+</button>
+
+<button onclick="registrarPartido('empate')">
+    🤝 EMPATE (+200)
+</button>
+
+<button onclick="registrarPartido('derrota')">
+    ❌ DERROTA (+0)
+</button>
+
+<hr>
+
+<h3>🏟️ MEJORAR CLUB</h3>
+
+<p id="costoMejora">Costo de mejora: 1.000 monedas</p>
+
+<button onclick="mejorarNivel()">
+    ⬆️ SUBIR NIVEL
+</button>
 
                 <button onclick="guardarClub()">
                     💾 GUARDAR CLUB
